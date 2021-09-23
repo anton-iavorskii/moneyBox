@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.MainPage__wrapperPayments {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MainPage__payment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border: 1px solid grey;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.--selected {
+  background-color: chartreuse;
+}
+
+.MainPage__boxTitle {
+  width: 150px;
+  padding: 5px 0;
+  margin: 10px;
+  text-align: center;
+  border: 1px solid grey;
+  cursor: pointer;
+}
