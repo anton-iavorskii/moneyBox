@@ -8,6 +8,7 @@ import "./index.css";
 
 import { Context } from "../../context/Context";
 import Auth from "../../services/auth";
+import FormCreateBox from "../../components/FormCreateBox";
 
 import { CREATE_BOX, GET_BOXES } from "../../query/boxes";
 import {
@@ -218,6 +219,7 @@ const MainPage = () => {
           );
         })}
       </div>
+      <FormCreateBox />
     </div>
   );
 };
