@@ -1,21 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { useLazyQuery, useMutation } from "@apollo/client";
 
 import "./index.css";
 
 import { Context } from "../../context/Context";
 import Auth from "../../services/auth";
-import FormCreateBox from "../../components/FormCreateBox";
 
-import { CREATE_BOX, GET_BOXES } from "../../query/boxes";
-import {
-  CREATE_PAYMENT,
-  GET_PAYMENTS,
-  UPDATE_PAYMENT,
-} from "../../query/payments";
+import { GET_BOXES } from "../../query/boxes";
+import { GET_PAYMENTS, UPDATE_PAYMENT } from "../../query/payments";
 
 const MainPage = () => {
   const [context, setContext] = useContext(Context);
@@ -62,6 +55,7 @@ const MainPage = () => {
         boxId: boxIdClick,
       },
     });
+    history.push(`/box/${boxIdClick}`);
   };
 
   const changeStatusPayment = (paymentId, paymentStatus) => {
