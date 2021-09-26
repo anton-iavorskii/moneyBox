@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 
 import "./index.css";
 
@@ -8,29 +8,14 @@ import { Context } from "../../context/Context";
 import Auth from "../../services/auth";
 
 import { GET_BOXES } from "../../query/boxes";
-import { GET_PAYMENTS, UPDATE_PAYMENT } from "../../query/payments";
 
 const MainPage = () => {
   const [context, setContext] = useContext(Context);
   const history = useHistory();
   const { userId } = context;
-  const [selectBox, setSelectBox] = useState();
-
-  const refetchQueries = userId && [
-    { query: GET_BOXES, variables: { userId: userId } },
-  ];
-  const rqPayment = [{ query: GET_PAYMENTS, variables: { boxId: selectBox } }];
 
   const [getBoxes, { data: dataBoxes }] = useLazyQuery(GET_BOXES);
   const boxes = dataBoxes?.allBoxes?.nodes;
-
-  const [getPayments, { data: dataPayments }] = useLazyQuery(GET_PAYMENTS);
-  const payments = dataPayments?.boxById?.paymentsByBoxId?.nodes;
-
-  const [updatePayment, { data: dataUpdatePayment }] = useMutation(
-    UPDATE_PAYMENT,
-    { refetchQueries: rqPayment }
-  );
 
   useEffect(() => {
     if (userId) {
@@ -48,23 +33,7 @@ const MainPage = () => {
  }, []) */
 
   const paymentsHandler = (boxIdClick) => {
-    setSelectBox(boxIdClick);
-
-    getPayments({
-      variables: {
-        boxId: boxIdClick,
-      },
-    });
     history.push(`/box/${boxIdClick}`);
-  };
-
-  const changeStatusPayment = (paymentId, paymentStatus) => {
-    updatePayment({
-      variables: {
-        payId: paymentId,
-        status: !paymentStatus,
-      },
-    });
   };
 
   const handlerLogout = () => {
@@ -99,20 +68,6 @@ const MainPage = () => {
           </div>
         );
       })}
-
-      <div className="MainPage__wrapperPayments">
-        {payments?.map((item, index) => {
-          return (
-            <div
-              className={`MainPage__payment ${item.status && "--selected"}`}
-              key={index}
-              onClick={() => changeStatusPayment(item.id, item.status)}
-            >
-              {item.value}
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 };
