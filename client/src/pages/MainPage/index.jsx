@@ -5,7 +5,7 @@ import { useLazyQuery } from "@apollo/client";
 import "./index.css";
 
 import { Context } from "../../context/Context";
-import Auth from "../../services/auth";
+import Header from "../../components/Header";
 
 import { GET_BOXES } from "../../query/boxes";
 
@@ -36,22 +36,13 @@ const MainPage = () => {
     history.push(`/box/${boxIdClick}`);
   };
 
-  const handlerLogout = () => {
-    Auth.logout();
-  };
-
   const handlerCreateBox = () => {
     history.push("/createBox");
   };
 
   return (
     <div className="MainPage">
-      <div className="header">
-        <h1 className="">MONEY BOX</h1>
-        <div className="logout" onClick={handlerLogout}>
-          ВЫЙТИ
-        </div>
-      </div>
+      <Header />
 
       <button onClick={handlerCreateBox}>Добавить копилку</button>
 

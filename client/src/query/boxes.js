@@ -36,3 +36,20 @@ export const GET_BOXES = gql`
     }
   }
 `;
+
+export const GET_BOX = gql`
+  query getBox($boxId: UUID!) {
+    box: boxById(id: $boxId) {
+      title
+      time
+      createdAt
+      payments: paymentsByBoxId(orderBy: VALUE_ASC) {
+        nodes {
+          value
+          status
+          id
+        }
+      }
+    }
+  }
+`;

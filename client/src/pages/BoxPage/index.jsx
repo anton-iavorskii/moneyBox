@@ -5,8 +5,11 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import "./index.css";
 
 import { Context } from "../../context/Context";
+import Header from "../../components/Header";
+import BtnToMainPage from "../../components/BtnToMainPage";
 
-import { GET_PAYMENTS, UPDATE_PAYMENT } from "../../query/payments";
+import { UPDATE_PAYMENT } from "../../query/payments";
+import { GET_BOX } from "../../query/boxes";
 
 const BoxPage = () => {
   const [context, setContext] = useContext(Context);
@@ -14,18 +17,19 @@ const BoxPage = () => {
   const { userId } = context;
   const history = useHistory();
 
-  const rqPayment = [{ query: GET_PAYMENTS, variables: { boxId: boxId } }];
-  const [getPayments, { data: dataPayments }] = useLazyQuery(GET_PAYMENTS);
-  const payments = dataPayments?.boxById?.paymentsByBoxId?.nodes;
+  const rqBox = [{ query: GET_BOX, variables: { boxId: boxId } }];
+  const [getBox, { data: dataBox }] = useLazyQuery(GET_BOX);
+  const boxTitle = dataBox?.box?.title;
+  const payments = dataBox?.box?.payments?.nodes;
 
   const [updatePayment, { data: dataUpdatePayment }] = useMutation(
     UPDATE_PAYMENT,
-    { refetchQueries: rqPayment }
+    { refetchQueries: rqBox }
   );
 
   useEffect(() => {
     if (boxId) {
-      getPayments({
+      getBox({
         variables: {
           boxId: boxId,
         },
@@ -44,7 +48,9 @@ const BoxPage = () => {
 
   return (
     <div className="BoxPage">
-      <h1>Страница копилки</h1>
+      <Header />
+      <h1>{boxTitle}</h1>
+      <BtnToMainPage />
       <div className="MainPage__wrapperPayments">
         {payments?.map((item, index) => {
           return (

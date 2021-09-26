@@ -1,10 +1,3 @@
-.header {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .MainPage__wrapperPayments {
   display: flex;
   flex-wrap: wrap;

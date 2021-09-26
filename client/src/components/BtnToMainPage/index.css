@@ -1,0 +1,8 @@
+.BtnToMainPage {
+  border: 1px solid grey;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 0;
+  width: 60%;
+  margin: 10px auto;
+}
