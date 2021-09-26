@@ -43,6 +43,7 @@ export const GET_BOX = gql`
       title
       time
       createdAt
+      amount
       payments: paymentsByBoxId(orderBy: VALUE_ASC) {
         nodes {
           value

@@ -7,6 +7,7 @@ import "./index.css";
 import { Context } from "../../context/Context";
 import Header from "../../components/Header";
 import BtnToMainPage from "../../components/BtnToMainPage";
+import moment from "../../services/moment";
 
 import { UPDATE_PAYMENT } from "../../query/payments";
 import { GET_BOX } from "../../query/boxes";
@@ -17,9 +18,15 @@ const BoxPage = () => {
   const { userId } = context;
   const history = useHistory();
 
+  const [paymentsTrue, setPaymentsTrue] = useState(0);
+
   const rqBox = [{ query: GET_BOX, variables: { boxId: boxId } }];
+
   const [getBox, { data: dataBox }] = useLazyQuery(GET_BOX);
   const boxTitle = dataBox?.box?.title;
+  const boxAmount = dataBox?.box?.amount;
+  const boxTime = dataBox?.box?.time;
+  const boxCreatedAt = dataBox?.box?.createdAt;
   const payments = dataBox?.box?.payments?.nodes;
 
   const [updatePayment, { data: dataUpdatePayment }] = useMutation(
@@ -35,7 +42,7 @@ const BoxPage = () => {
         },
       });
     }
-  }, [boxId]);
+  }, [boxId, getBox]);
 
   const changeStatusPayment = (paymentId, paymentStatus) => {
     updatePayment({
@@ -46,11 +53,28 @@ const BoxPage = () => {
     });
   };
 
+  /*   useEffect(() => {
+    if (dataBox) {
+      payments.forEach((item) => {
+        if (item.status) {
+          setPaymentsTrue(paymentsTrue + item.value);
+        }
+      });
+    }
+  }, [dataBox, setPaymentsTrue]); */
+
   return (
     <div className="BoxPage">
       <Header />
-      <h1>{boxTitle}</h1>
+      <h1>
+        {boxTitle} - {boxAmount} руб.
+      </h1>
       <BtnToMainPage />
+      <div>Цель поставлена: {moment(boxCreatedAt).format("D MMMM YYYY")}</div>
+      {/* <div>Надо накопить:  рублей.</div> */}
+      <div>Срок: {boxTime} недель.</div>
+      <div>Уже в копилке: {paymentsTrue} рублей.</div>
+      <div>Осталось накопить: {boxAmount - paymentsTrue} рублей.</div>
       <div className="MainPage__wrapperPayments">
         {payments?.map((item, index) => {
           return (
