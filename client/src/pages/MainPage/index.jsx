@@ -31,17 +31,6 @@ const MainPage = () => {
   const [getBoxes, { data: dataBoxes }] = useLazyQuery(GET_BOXES);
   const boxes = dataBoxes?.allBoxes?.nodes;
 
-  const [createBox, { data: dataCreateBox }] = useMutation(CREATE_BOX, {
-    refetchQueries,
-  });
-
-  const newBoxId = dataCreateBox?.createBox?.box?.id;
-  const userWantsResult = dataCreateBox?.createBox?.box?.amount;
-  const userWantsTime = dataCreateBox?.createBox?.box?.time;
-
-  const [createPayment, { data: dataCreatePayment }] =
-    useMutation(CREATE_PAYMENT);
-
   const [getPayments, { data: dataPayments }] = useLazyQuery(GET_PAYMENTS);
   const payments = dataPayments?.boxById?.paymentsByBoxId?.nodes;
 
@@ -57,24 +46,6 @@ const MainPage = () => {
       });
     }
   }, [userId, getBoxes]);
-
-  useEffect(() => {
-    if (dataCreateBox) {
-      const firstPayment = userWantsResult / userWantsTime / 26.5;
-
-      for (let i = 1; i <= userWantsTime; i++) {
-        let val = Math.round(firstPayment * i);
-        createPayment({
-          variables: {
-            userId: userId,
-            boxId: newBoxId,
-            value: val,
-          },
-        });
-      }
-      setSelectBox(newBoxId);
-    }
-  }, [dataCreateBox]);
 
   /* для суммы все чисел в массиве */
   /* useEffect(() => {
@@ -106,48 +77,9 @@ const MainPage = () => {
     Auth.logout();
   };
 
-  // схема валидации
-  const validationSchema = Yup.object().shape({
-    title: Yup.string().required("Заполните поле - Название"),
-    amount: Yup.number().typeError("укажите желаеммую сумму накопления"),
-    time: Yup.number().typeError("укажите срок накопления"),
-  });
-
-  // начальные значения полей
-  const initialValues = {
-    title: "",
-    amount: "",
-    time: "",
+  const handlerCreateBox = () => {
+    history.push("/createBox");
   };
-
-  // данные из формы
-  const onSubmit = (data) => {
-    createBox({
-      variables: {
-        userId: userId,
-        amount: data.amount,
-        time: data.time,
-        title: data.title,
-      },
-    });
-
-    resetForm(); // сбрасывает все стейты формы на начальное состояние
-  };
-
-  const {
-    handleSubmit,
-    handleChange,
-    values,
-    errors,
-    touched,
-    setValues,
-    setFieldValue,
-    resetForm,
-  } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit,
-  });
 
   return (
     <div className="MainPage">
@@ -158,39 +90,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          onChange={handleChange}
-          value={values.title}
-          placeholder="Название копилки"
-        />
-        {touched.title && errors.title ? (
-          <div style={{ color: "red" }}>{errors.title}</div>
-        ) : null}
-        <input
-          type="number"
-          name="amount"
-          onChange={handleChange}
-          value={values.amount}
-          placeholder="желаемая сумма"
-        />
-        {touched.amount && errors.amount ? (
-          <div style={{ color: "red" }}>{errors.amount}</div>
-        ) : null}
-        <input
-          type="number"
-          name="time"
-          onChange={handleChange}
-          value={values.time}
-          placeholder="за какой срок надо накопить"
-        />
-        {touched.time && errors.time ? (
-          <div style={{ color: "red" }}>{errors.time}</div>
-        ) : null}
-        <button type="submit">Создать копилку</button>
-      </form>
+      <button onClick={handlerCreateBox}>Добавить копилку</button>
 
       <h2>Мои копилки:</h2>
       {boxes?.length <= 0 && <div>Копилок пока нет...</div>}
@@ -219,7 +119,6 @@ const MainPage = () => {
           );
         })}
       </div>
-      <FormCreateBox />
     </div>
   );
 };

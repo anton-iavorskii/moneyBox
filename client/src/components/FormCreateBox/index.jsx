@@ -92,12 +92,12 @@ const FormCreateBox = () => {
           },
         });
       }
-      // setSelectBox(newBoxId);
+      history.push("/");
     }
   }, [dataCreateBox]);
 
   return (
-    <form className="CreatePaymentForm" onSubmit={handleSubmit}>
+    <form className="FormCreateBox" onSubmit={handleSubmit}>
       <input
         type="text"
         name="title"

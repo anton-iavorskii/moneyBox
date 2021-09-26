@@ -1,0 +1,10 @@
+.FormCreateBox {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.FormCreateBox * {
+  margin: 5px 10px;
+}
