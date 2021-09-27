@@ -23,6 +23,14 @@ export const CREATE_BOX = gql`
   }
 `;
 
+export const REMOVE_BOX = gql`
+  mutation removeBox($boxId: UUID!) {
+    deleteBoxById(input: { id: $boxId }) {
+      clientMutationId
+    }
+  }
+`;
+
 export const GET_BOXES = gql`
   query getBoxes($userId: UUID!) {
     allBoxes(condition: { userId: $userId }) {

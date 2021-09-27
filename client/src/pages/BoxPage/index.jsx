@@ -10,7 +10,7 @@ import BtnToMainPage from "../../components/BtnToMainPage";
 import moment from "../../services/moment";
 
 import { UPDATE_PAYMENT } from "../../query/payments";
-import { GET_BOX } from "../../query/boxes";
+import { GET_BOX, REMOVE_BOX } from "../../query/boxes";
 
 const BoxPage = () => {
   const [context, setContext] = useContext(Context);
@@ -34,6 +34,8 @@ const BoxPage = () => {
     { refetchQueries: rqBox }
   );
 
+  const [removeBox, { data: dataRemoveBox }] = useMutation(REMOVE_BOX);
+
   useEffect(() => {
     if (boxId) {
       getBox({
@@ -56,17 +58,32 @@ const BoxPage = () => {
   useEffect(() => {
     if (dataBox) {
       let arrPaymentsTrue = [];
+
       payments.forEach((item) => {
         if (item.status) {
           arrPaymentsTrue = [...arrPaymentsTrue, item.value];
         }
       });
+      /* сумма всех чисел в массиве */
       let sumPayments = arrPaymentsTrue.reduce((sum, elem) => {
         return sum + elem;
       }, 0);
+
       setPaymentsTrue(sumPayments);
     }
   }, [dataBox, setPaymentsTrue]);
+
+  const removeBoxHandler = () => {
+    if (boxId) {
+      alert(`Удалить копилку ${boxTitle}?`);
+      removeBox({
+        variables: {
+          boxId: boxId,
+        },
+      });
+    }
+    history.push("/");
+  };
 
   return (
     <div className="BoxPage">
@@ -75,6 +92,9 @@ const BoxPage = () => {
         {boxTitle} - {boxAmount} руб.
       </h1>
       <BtnToMainPage />
+      <div className="BtnRemoveBox" onClick={removeBoxHandler}>
+        Удалить копилку
+      </div>
       <div>Цель поставлена: {moment(boxCreatedAt).format("D MMMM YYYY")}</div>
       {/* <div>Надо накопить:  рублей.</div> */}
       <div>Срок: {boxTime} недель.</div>

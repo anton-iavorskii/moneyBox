@@ -25,13 +25,6 @@ const MainPage = () => {
     }
   }, [userId, getBoxes]);
 
-  /* для суммы все чисел в массиве */
-  /* useEffect(() => {
-  let result = ИМЯ_МАССИВА.reduce((sum, elem) => {
-   return sum + elem;
- }, 0);
- }, []) */
-
   const paymentsHandler = (boxIdClick) => {
     history.push(`/box/${boxIdClick}`);
   };
