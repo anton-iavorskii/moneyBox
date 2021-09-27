@@ -51,11 +51,27 @@ const FormCreateBox = () => {
 
   // данные из формы
   const onSubmit = (data) => {
+    let timeForDB;
+    switch (data.time) {
+      case "12":
+        timeForDB = 52;
+        break;
+      case "6":
+        timeForDB = 26;
+        break;
+      case "3":
+        timeForDB = 13;
+        break;
+
+      default:
+        break;
+    }
+
     createBox({
       variables: {
         userId: userId,
         amount: data.amount,
-        time: data.time,
+        time: timeForDB,
         title: data.title,
       },
     });
@@ -80,7 +96,23 @@ const FormCreateBox = () => {
 
   useEffect(() => {
     if (dataCreateBox) {
-      const firstPayment = userWantsResult / userWantsTime / 26.5;
+      let firstPayment;
+      switch (userWantsTime) {
+        case 52:
+          firstPayment = userWantsResult / userWantsTime / 26.5;
+          break;
+        case 26:
+          firstPayment = userWantsResult / userWantsTime / 13.5;
+          break;
+        case 13:
+          firstPayment = userWantsResult / userWantsTime / 7;
+          break;
+
+        default:
+          break;
+      }
+
+      // const firstPayment = userWantsResult / userWantsTime / 26.5;
 
       for (let i = 1; i <= userWantsTime; i++) {
         let val = Math.round(firstPayment * i);
@@ -118,13 +150,22 @@ const FormCreateBox = () => {
       {touched.amount && errors.amount ? (
         <div style={{ color: "red" }}>{errors.amount}</div>
       ) : null}
-      <input
+      {/* <input
         type="number"
         name="time"
         onChange={handleChange}
         value={values.time}
         placeholder="за какой срок надо накопить"
-      />
+      /> */}
+
+      <select name="time" onChange={handleChange} value={values.time}>
+        <option value="null">Срок накопления </option>
+
+        <option value={12}>12 месяцев</option>
+        <option value={6}>6 месяцев</option>
+        <option value={3}>3 месяца</option>
+      </select>
+
       {touched.time && errors.time ? (
         <div style={{ color: "red" }}>{errors.time}</div>
       ) : null}
