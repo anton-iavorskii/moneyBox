@@ -45,12 +45,14 @@ const FormCreateBox = () => {
   // начальные значения полей
   const initialValues = {
     title: "",
-    amount: "",
-    time: "",
+    amount: null, //! на null вылетает Warning, если установить "" то не сработает Yup
+    time: null, //! на null вылетает Warning, если установить "" то не сработает Yup
   };
 
   // данные из формы
   const onSubmit = (data) => {
+    // так как формула считает в неделях, то для БД
+    // переводим месяцы в недели
     let timeForDB;
     switch (data.time) {
       case "12":
@@ -150,25 +152,17 @@ const FormCreateBox = () => {
       {touched.amount && errors.amount ? (
         <div style={{ color: "red" }}>{errors.amount}</div>
       ) : null}
-      {/* <input
-        type="number"
-        name="time"
-        onChange={handleChange}
-        value={values.time}
-        placeholder="за какой срок надо накопить"
-      /> */}
 
       <select name="time" onChange={handleChange} value={values.time}>
         <option value="null">Срок накопления </option>
-
         <option value={12}>12 месяцев</option>
         <option value={6}>6 месяцев</option>
         <option value={3}>3 месяца</option>
       </select>
-
       {touched.time && errors.time ? (
         <div style={{ color: "red" }}>{errors.time}</div>
       ) : null}
+
       <button type="submit">Создать копилку</button>
     </form>
   );
