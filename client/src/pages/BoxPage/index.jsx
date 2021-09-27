@@ -53,15 +53,20 @@ const BoxPage = () => {
     });
   };
 
-  /*   useEffect(() => {
+  useEffect(() => {
     if (dataBox) {
+      let arrPaymentsTrue = [];
       payments.forEach((item) => {
         if (item.status) {
-          setPaymentsTrue(paymentsTrue + item.value);
+          arrPaymentsTrue = [...arrPaymentsTrue, item.value];
         }
       });
+      let sumPayments = arrPaymentsTrue.reduce((sum, elem) => {
+        return sum + elem;
+      }, 0);
+      setPaymentsTrue(sumPayments);
     }
-  }, [dataBox, setPaymentsTrue]); */
+  }, [dataBox, setPaymentsTrue]);
 
   return (
     <div className="BoxPage">
