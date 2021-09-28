@@ -5,18 +5,34 @@
   "author": "Iavorskii A",
   "license": "MIT",
   "scripts": {
-    "start": "node app.js",
-    "server": "nodemon app.js"
+    "start": "babel-node src/app.js",
+    "pm2:dev": "pm2 startOrRestart ecosystem.json --only 'moneyBox-server-dev' --env delevopment",
+    "pm2:prod": "yarn build; pm2 startOrRestart ecosystem.json --only 'moneyBox-server-prod' --env production",
+    "pm2:logs": "pm2 logs",
+    "pm2:kill": "pm2 delete 'moneyBox-server-dev'; pm2 delete 'moneyBox-server-prod'; pm2 flush",
+    "build": "babel ./src --out-dir dist --copy-files",
+    "setup": "yarn install",
+    "env:copy": "cp .env.production.dist .env.production"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "mongoose": "^6.0.4",
     "postgraphile": "^4.12.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/eslint-parser": "^7.11.0",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-export-default-from": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/register": "^7.10.5",
+    "@babel/runtime": "^7.11.2",
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.12"
   }
 }

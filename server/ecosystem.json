@@ -1,0 +1,21 @@
+{
+  "apps": [
+    {
+      "name": "moneyBox-server-dev",
+      "script": "babel-node src/app.js",
+      "watch": true,
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "name": "moneyBox-server-prod",
+      "script": "dist/app.js",
+      "instances": "max",
+      "exec_mode": "cluster",
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}

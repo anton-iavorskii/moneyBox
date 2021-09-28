@@ -2,7 +2,6 @@
 
 .env
 /dist
-.env.production
 
 # dependencies
 /node_modules

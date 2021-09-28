@@ -1,0 +1,18 @@
+{
+  "name": "moneybox-sql",
+  "version": "2.0.1",
+  "author": "pwrg",
+  "license": "MIT",
+  "scripts": {
+    "meta": "psql -h localhost -U postgres < meta.sql",
+    "scheme": "gunzip -c scheme.sql.gz | psql -h localhost -U postgres -d moneyboxDB",
+    "data": "psql -h localhost -U postgres -d moneyboxDB < data.sql",
+    "update": "psql -h localhost -U postgres -d moneyboxDB < update.sql",
+    "backup": "pg_dump -h localhost -d moneyboxDB -U postgres | gzip > backup.sql.gz",
+    "restore": "gunzip -c backup.sql.gz | psql -h localhost -U postgres -d moneyboxDB",
+    "clean": "psql -h localhost -U postgres -d moneyboxDB < clean.sql",
+    "setup": "yarn meta; yarn scheme; yarn data",
+    "test": "psql -h localhost -U postgres -f test.psql",
+    "xsetup": "cd src; sh setup.sh"
+  }
+}

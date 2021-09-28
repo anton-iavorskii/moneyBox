@@ -1,0 +1,8 @@
+{
+  "apps": [
+    {
+      "name": "moneyBox-web-dev",
+      "script": "yarn start"
+    }
+  ]
+}

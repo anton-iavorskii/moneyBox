@@ -3,5 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "89117058000@mail.ru Anton Iavorskii",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "pm2:prod": "yarn --cwd 'server' pm2:prod; yarn --cwd 'client' pm2:prod",
+    "pm2:dev": "yarn --cwd 'server' pm2:dev; yarn --cwd 'client' pm2:dev",
+    "pm2:kill": "yarn --cwd 'server' pm2:kill; yarn --cwd 'client' pm2:kill; pm2 flush",
+    "pm2:logs": "pm2 logs",
+    "pull": "git pull; yarn --cwd client build",
+    "server": "yarn --cwd 'server' start",
+    "web": "yarn --cwd 'client' start",
+    "setup": "sudo yarn global add pm2; yarn --cwd 'server'; yarn --cwd 'static'; yarn --cwd 'client'"
+  }
 }

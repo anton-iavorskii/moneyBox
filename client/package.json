@@ -8,8 +8,10 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "formik": "^2.2.9",
+    "global": "^4.4.0",
     "graphql": "^15.5.3",
     "moment": "^2.29.1",
+    "pm2": "^5.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.0",
@@ -18,6 +20,10 @@
     "yup": "^0.32.9"
   },
   "scripts": {
+    "pm2:dev": "pm2 startOrRestart ecosystem.json --only 'moneyBox-web-dev'",
+    "pm2:prod": "yarn build; pm2 serve --name 'moneyBox-web-prod' --spa ./build 5000",
+    "pm2:logs": "pm2 logs",
+    "pm2:kill": "pm2 delete 'moneyBox-web-dev'; pm2 delete 'moneyBox-web-prod'; pm2 flush",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
