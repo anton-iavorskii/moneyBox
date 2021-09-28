@@ -12,6 +12,6 @@
     "pull": "git pull; yarn --cwd client build",
     "server": "yarn --cwd 'server' start",
     "web": "yarn --cwd 'client' start",
-    "setup": "sudo yarn global add pm2; yarn --cwd 'server'; yarn --cwd 'static'; yarn --cwd 'client'"
+    "setup": "sudo yarn global add pm2; yarn --cwd 'server'; yarn --cwd 'client'"
   }
 }
