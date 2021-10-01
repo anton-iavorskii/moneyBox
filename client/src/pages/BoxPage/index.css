@@ -1,10 +1,111 @@
-.BtnRemoveBox {
+.BoxPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.BoxPage__NavigationWrapper {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.BoxPage__TitleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+.BoxPage__BoxTitle {
+  font-size: 35px;
+  letter-spacing: 1.5px;
+}
+
+.BoxPage__BoxAmount {
+  font-size: 16px;
+  color: grey;
+}
+
+.BoxPage__infoWrapper {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-bottom: 1px solid grey;
+  padding-bottom: 30px;
+}
+
+.BoxPage__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid grey;
+  border-radius: 6px;
+  width: 154px;
+  height: 50px;
+  margin: 5px;
+  letter-spacing: 1.5px;
+}
+
+.BoxPage__info_textInBlock {
+  font-size: 12px;
+  color: grey;
+  letter-spacing: 0.5px;
+}
+
+.BoxPage__wrapperPayments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.BoxPage__paymentsContainer {
+  position: relative;
+}
+
+.BoxPage__payment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
   border: 1px solid grey;
-  border-radius: 5px;
-  text-align: center;
-  padding: 5px 0;
-  width: 150px;
-  margin: 10px auto;
+  margin: 5px;
+  cursor: pointer;
+  /* font-weight: 600; */
+}
+
+.BoxPage__paymenLine1 {
+  position: absolute;
+  z-index: 1;
+  top: 56px;
+  left: -13px;
+  width: 139.42px;
+  height: 1px;
   background-color: red;
-  color: white;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transition: 1s;
+}
+
+.BoxPage__paymenLine2 {
+  position: absolute;
+  z-index: 1;
+  top: 56px;
+  left: -13px;
+  width: 139.42px;
+  height: 1px;
+  background-color: red;
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transition: 1s;
 }

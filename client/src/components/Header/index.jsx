@@ -11,10 +11,13 @@ const Header = () => {
 
   return (
     <div className="Header">
-      <h1 className="">MONEY BOX</h1>
-      <div className="logout" onClick={handlerLogout}>
-        ВЫЙТИ
-      </div>
+      <div className="logo">FG</div>
+      <div className="logoCenter">Finacial Goal</div>
+      <img
+        className="BtnLogout"
+        src="/img/btn_logout.svg"
+        onClick={handlerLogout}
+      />
     </div>
   );
 };
