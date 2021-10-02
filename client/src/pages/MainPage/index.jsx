@@ -37,10 +37,10 @@ const MainPage = () => {
     <div className="MainPage">
       <Header />
 
-      <button onClick={handlerCreateBox}>Добавить копилку</button>
+      <button onClick={handlerCreateBox}>Добавить цель</button>
 
-      <h2>Мои копилки:</h2>
-      {boxes?.length <= 0 && <div>Копилок пока нет...</div>}
+      <h2>Мои цели:</h2>
+      {boxes?.length <= 0 && <div>Целей пока нет...</div>}
       {boxes?.map((item, index) => {
         return (
           <div

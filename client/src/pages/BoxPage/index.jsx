@@ -76,7 +76,7 @@ const BoxPage = () => {
 
   const removeBoxHandler = () => {
     if (boxId) {
-      alert(`Удалить копилку ${boxTitle}?`);
+      alert(`Удалить цель ${boxTitle}?`);
       removeBox({
         variables: {
           boxId: boxId,

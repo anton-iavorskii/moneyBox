@@ -5,4 +5,28 @@ body {
   padding: 0;
   font-family: "Manrope", sans-serif;
   font-weight: 300;
+  letter-spacing: 1.5px;
+}
+
+a {
+  text-decoration: none;
+  color: #e5e7f7;
+}
+
+input {
+  background-color: #1c1f2d;
+  color: #e5e7f7;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: #e5e7f7;
+  background-color: transparent;
+  cursor: pointer;
+  letter-spacing: 1px;
 }
