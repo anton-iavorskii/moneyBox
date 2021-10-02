@@ -10,9 +10,11 @@ const BtnToMainPage = () => {
   };
 
   return (
-    <div className="BtnToMainPage" onClick={handlerToMainPage}>
-      На главную
-    </div>
+    <img
+      className="BtnToMainPage"
+      src="/img/btn_goBack.svg"
+      onClick={handlerToMainPage}
+    />
   );
 };
 

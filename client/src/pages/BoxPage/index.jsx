@@ -11,6 +11,7 @@ import moment from "../../services/moment";
 
 import { UPDATE_PAYMENT } from "../../query/payments";
 import { GET_BOX, REMOVE_BOX } from "../../query/boxes";
+import ProgressBar from "../../components/ProgressBar";
 
 const BoxPage = () => {
   const [context, setContext] = useContext(Context);
@@ -85,30 +86,62 @@ const BoxPage = () => {
     history.push("/");
   };
 
+  const progressPercent = (paymentsTrue * 100) / boxAmount;
+
   return (
     <div className="BoxPage">
       <Header />
-      <h1>
-        {boxTitle} - {boxAmount} руб.
-      </h1>
-      <BtnToMainPage />
-      <div className="BtnRemoveBox" onClick={removeBoxHandler}>
-        Удалить копилку
+      <ProgressBar
+        progress={progressPercent}
+        size={200}
+        strokeWidth={5}
+        circleOneStroke="red"
+        circleTwoStroke="#e5e7f7"
+      />
+      <div className="BoxPage__NavigationWrapper">
+        <img src="/img/btn_delete.svg" onClick={removeBoxHandler} />
+        <div className="BoxPage__TitleWrapper">
+          <div className="BoxPage__BoxTitle"> {boxTitle}</div>
+          <div className="BoxPage__BoxAmount"> цель {boxAmount} руб.</div>
+        </div>
+        <BtnToMainPage />
       </div>
-      <div>Цель поставлена: {moment(boxCreatedAt).format("D MMMM YYYY")}</div>
-      {/* <div>Надо накопить:  рублей.</div> */}
-      <div>Срок: {boxTime} недель.</div>
-      <div>Уже в копилке: {paymentsTrue} рублей.</div>
-      <div>Осталось накопить: {boxAmount - paymentsTrue} рублей.</div>
-      <div className="MainPage__wrapperPayments">
+
+      <div className="BoxPage__infoWrapper">
+        <div className="BoxPage__info ">
+          <div className="BoxPage__info_createdAt">
+            {moment(boxCreatedAt).format("D MMMM YYYY")}
+          </div>
+          <div className="BoxPage__info_textInBlock">цель поставлена</div>
+        </div>
+        {/* <div>Надо накопить:  рублей.</div> */}
+        <div className="BoxPage__info">
+          <div className="BoxPage__info_time">{boxTime} недель</div>
+          <div className="BoxPage__info_textInBlock">срок</div>
+        </div>
+        <div className="BoxPage__info">
+          <div className="BoxPage__info_paymentsTrue">{paymentsTrue} руб.</div>
+          <div className="BoxPage__info_textInBlock">накоплено</div>
+        </div>
+        <div className="BoxPage__info">
+          <div className="BoxPage__info_balance">
+            {boxAmount - paymentsTrue} руб.
+          </div>
+          <div className="BoxPage__info_textInBlock">осталось накопить</div>
+        </div>
+      </div>
+
+      <div className="BoxPage__wrapperPayments">
         {payments?.map((item, index) => {
           return (
             <div
-              className={`MainPage__payment ${item.status && "--selected"}`}
+              className="BoxPage__paymentsContainer"
               key={index}
               onClick={() => changeStatusPayment(item.id, item.status)}
             >
-              {item.value}
+              <div className="BoxPage__payment">{item.value}</div>
+              <div className={`${item.status && "BoxPage__paymenLine1"}`}></div>
+              <div className={`${item.status && "BoxPage__paymenLine2"}`}></div>
             </div>
           );
         })}
