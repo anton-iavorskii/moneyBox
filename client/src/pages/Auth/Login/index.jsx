@@ -70,7 +70,7 @@ const LoginPage = () => {
           type="email"
           name="email"
           onChange={handleChange}
-          placeholder="Почта"
+          placeholder="Укажите почту"
         />
 
         <input
@@ -78,7 +78,7 @@ const LoginPage = () => {
           type="password"
           name="password"
           onChange={handleChange}
-          placeholder="Пароль"
+          placeholder="Придумайте пароль"
         />
 
         <button
@@ -88,7 +88,7 @@ const LoginPage = () => {
           Войти
         </button>
       </form>
-      <div className="LoginPage__wrapperAuthLink">
+      <div className="wrapperAuthLink">
         <div>Нет аккаунта?</div>
         <Link className="AuthLink" to="/reg">
           Зарегистрироваться

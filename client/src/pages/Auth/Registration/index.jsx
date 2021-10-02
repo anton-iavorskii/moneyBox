@@ -9,6 +9,7 @@ import { Context } from "../../../context/Context";
 import Auth from "../../../services/auth";
 
 import { SIGNUP } from "../../../mutation/user";
+import Header from "../../../components/Header";
 
 const RegistrationPage = () => {
   const [context, setContext] = useContext(Context);
@@ -71,9 +72,10 @@ const RegistrationPage = () => {
 
   return (
     <div className="RegistrationPage">
-      <h1 className="">Страница регистрации</h1>
-      <form onSubmit={handleSubmit}>
+      <Header />
+      <form className="Form RegistrationPage__Form" onSubmit={handleSubmit}>
         <input
+          className="Form__input RegistrationPage__Form_input"
           type="email"
           name="email"
           onChange={handleChange}
@@ -81,16 +83,26 @@ const RegistrationPage = () => {
         />
 
         <input
+          className="Form__input RegistrationPage__Form_input"
           type="password"
           name="password"
           onChange={handleChange}
           placeholder="Пароль"
         />
 
-        <button type="submit">Регистрация</button>
+        <button
+          className="Form__btnSubmit RegistrationPage__Form_btnSubmit"
+          type="submit"
+        >
+          Регистрация
+        </button>
       </form>
-      <p>Уже регистрировались?</p>
-      <Link to="/login">Войти</Link>
+      <div className="wrapperAuthLink">
+        <div>Уже регистрировались?</div>
+        <Link className="AuthLink" to="/login">
+          Войти
+        </Link>
+      </div>
     </div>
   );
 };
