@@ -22,6 +22,10 @@
 }
 
 .BoxPage__BoxTitle {
+  max-width: 230px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 35px;
   letter-spacing: 1.5px;
 }
