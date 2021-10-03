@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 30px;
 }
 
 .BoxPage__NavigationWrapper {
@@ -22,6 +23,10 @@
 }
 
 .BoxPage__BoxTitle {
+  max-width: 230px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 35px;
   letter-spacing: 1.5px;
 }

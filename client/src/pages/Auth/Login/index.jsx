@@ -1,3 +1,4 @@
+import "./index.css";
 import React, { useEffect, useContext } from "react";
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { Link, useHistory } from "react-router-dom";
@@ -8,6 +9,7 @@ import Auth from "../../../services/auth";
 import { SIGNIN } from "../../../mutation/user";
 
 import { Context } from "../../../context/Context";
+import Header from "../../../components/Header";
 
 const LoginPage = () => {
   const [context, setContext] = useContext(Context);
@@ -60,27 +62,38 @@ const LoginPage = () => {
   });
 
   return (
-    <div className="RegistrationPage">
-      <h1 className="">Страница входа</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="LoginPage">
+      <Header />
+      <form className="Form LoginPage__Form" onSubmit={handleSubmit}>
         <input
+          className="Form__input LoginPage__Form_input"
           type="email"
           name="email"
           onChange={handleChange}
-          placeholder="Почта"
+          placeholder="Укажите почту"
         />
 
         <input
+          className="Form__input LoginPage__Form_input"
           type="password"
           name="password"
           onChange={handleChange}
-          placeholder="Пароль"
+          placeholder="Придумайте пароль"
         />
 
-        <button type="submit">Войти</button>
+        <button
+          className="Form__btnSubmit LoginPage__Form_btnSubmit"
+          type="submit"
+        >
+          Войти
+        </button>
       </form>
-      <p>Нет аккаунта?</p>
-      <Link to="/reg">Регистрация</Link>
+      <div className="wrapperAuthLink">
+        <div>Нет аккаунта?</div>
+        <Link className="AuthLink" to="/reg">
+          Зарегистрироваться
+        </Link>
+      </div>
     </div>
   );
 };

@@ -131,18 +131,20 @@ const FormCreateBox = () => {
   }, [dataCreateBox]);
 
   return (
-    <form className="FormCreateBox" onSubmit={handleSubmit}>
+    <form className="Form FormCreateBox" onSubmit={handleSubmit}>
       <input
+        className="Form__input FormCreateBox__Form_input"
         type="text"
         name="title"
         onChange={handleChange}
         value={values.title}
-        placeholder="Название копилки"
+        placeholder="Название цели"
       />
       {touched.title && errors.title ? (
         <div style={{ color: "red" }}>{errors.title}</div>
       ) : null}
       <input
+        className="Form__input FormCreateBox__Form_input"
         type="number"
         name="amount"
         onChange={handleChange}
@@ -153,7 +155,12 @@ const FormCreateBox = () => {
         <div style={{ color: "red" }}>{errors.amount}</div>
       ) : null}
 
-      <select name="time" onChange={handleChange} value={values.time}>
+      <select
+        className="Form__select FormCreateBox__Form_select"
+        name="time"
+        onChange={handleChange}
+        value={values.time}
+      >
         <option value="null">Срок накопления </option>
         <option value={12}>12 месяцев</option>
         <option value={6}>6 месяцев</option>
@@ -163,7 +170,12 @@ const FormCreateBox = () => {
         <div style={{ color: "red" }}>{errors.time}</div>
       ) : null}
 
-      <button type="submit">Создать копилку</button>
+      <button
+        className="Form__btnSubmit FormCreateBox__Form_btnSubmit"
+        type="submit"
+      >
+        Создать цель
+      </button>
     </form>
   );
 };

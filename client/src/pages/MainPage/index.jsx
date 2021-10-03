@@ -36,19 +36,21 @@ const MainPage = () => {
   return (
     <div className="MainPage">
       <Header />
+      <div className="MainPage__wrapperTitleAndBtn">
+        <div className="MainPage__pageTitle">Мои цели:</div>
+        <img src="/img/btn_Add.svg" onClick={handlerCreateBox} />
+      </div>
 
-      <button onClick={handlerCreateBox}>Добавить копилку</button>
-
-      <h2>Мои копилки:</h2>
-      {boxes?.length <= 0 && <div>Копилок пока нет...</div>}
+      {boxes?.length <= 0 && <div>Целей пока нет...</div>}
       {boxes?.map((item, index) => {
         return (
           <div
-            className="MainPage__boxTitle"
+            className="MainPage__wrapperBoxTitle"
             key={index}
             onClick={() => paymentsHandler(item?.id)}
           >
-            {item.title}
+            <div className="MainPage__boxTitle">{item.title}</div>
+            <div className="MainPage__boxAmount">{item.amount}</div>
           </div>
         );
       })}
