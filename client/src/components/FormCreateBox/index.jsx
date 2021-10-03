@@ -149,7 +149,7 @@ const FormCreateBox = () => {
         name="amount"
         onChange={handleChange}
         value={values.amount}
-        placeholder="желаемая сумма"
+        placeholder="Желаемая сумма"
       />
       {touched.amount && errors.amount ? (
         <div style={{ color: "red" }}>{errors.amount}</div>

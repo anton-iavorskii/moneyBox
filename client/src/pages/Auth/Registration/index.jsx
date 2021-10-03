@@ -79,7 +79,7 @@ const RegistrationPage = () => {
           type="email"
           name="email"
           onChange={handleChange}
-          placeholder="Почта"
+          placeholder="Укажите почту"
         />
 
         <input
@@ -87,7 +87,7 @@ const RegistrationPage = () => {
           type="password"
           name="password"
           onChange={handleChange}
-          placeholder="Пароль"
+          placeholder="Придумайте пароль"
         />
 
         <button
