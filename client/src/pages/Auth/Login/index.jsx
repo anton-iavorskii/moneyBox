@@ -70,7 +70,7 @@ const LoginPage = () => {
           type="email"
           name="email"
           onChange={handleChange}
-          placeholder="Укажите почту"
+          placeholder="Почта"
         />
 
         <input
@@ -78,7 +78,7 @@ const LoginPage = () => {
           type="password"
           name="password"
           onChange={handleChange}
-          placeholder="Придумайте пароль"
+          placeholder="Пароль"
         />
 
         <button

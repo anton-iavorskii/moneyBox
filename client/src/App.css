@@ -19,7 +19,7 @@
 .Form__input,
 .Form__select {
   width: 60%;
-  height: 25px;
+  height: 45px;
   margin-bottom: 10px;
   background-color: #1c1f2d;
   color: #e5e7f7;
@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
 .AuthLink {
