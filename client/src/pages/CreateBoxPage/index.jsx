@@ -10,8 +10,10 @@ const CreateBoxPage = () => {
   return (
     <div className="CreateBoxPage">
       <Header />
-      <BtnToMainPage />
       <FormCreateBox />
+      <div className="CreateBoxPage__BtnToMainPage">
+        <BtnToMainPage />
+      </div>
     </div>
   );
 };

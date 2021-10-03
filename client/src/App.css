@@ -16,7 +16,8 @@
   align-items: center;
 }
 
-.Form__input {
+.Form__input,
+.Form__select {
   width: 60%;
   height: 25px;
   margin-bottom: 10px;
@@ -26,6 +27,12 @@
   outline: none;
   border-bottom: 1px solid #e5e7f7;
   padding: 5px 5px;
+}
+
+.Form__select {
+  font-size: 17px;
+  height: 30px;
+  padding: 5px 0px;
 }
 
 .Form__btnSubmit {
