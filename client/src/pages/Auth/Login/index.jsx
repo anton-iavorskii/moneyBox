@@ -72,6 +72,9 @@ const LoginPage = () => {
           onChange={handleChange}
           placeholder="Почта"
         />
+        {touched.email && errors.email ? (
+          <div style={{ color: "red" }}>{errors.email}</div>
+        ) : null}
 
         <input
           className="Form__input LoginPage__Form_input"
