@@ -8,6 +8,7 @@ import { Context } from "../../context/Context";
 import Header from "../../components/Header";
 
 import { GET_BOXES } from "../../query/boxes";
+import addSpaceInNumbers from "../../services/spaceInNumbers";
 
 const MainPage = () => {
   const [context, setContext] = useContext(Context);
@@ -50,7 +51,9 @@ const MainPage = () => {
             onClick={() => paymentsHandler(item?.id)}
           >
             <div className="MainPage__boxTitle">{item.title}</div>
-            <div className="MainPage__boxAmount">{item.amount}</div>
+            <div className="MainPage__boxAmount">
+              {addSpaceInNumbers(item.amount)}
+            </div>
           </div>
         );
       })}

@@ -14,26 +14,25 @@
 }
 
 .MainPage__pageTitle {
-  font-size: 35px;
-  letter-spacing: 1.5px;
+  font-size: 25px;
+  letter-spacing: 1px;
 }
 
 .MainPage__wrapperBoxTitle {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1c1f2d;
+  background-color: #2a2e4094;
   width: 90%;
-  height: 50px;
+  height: 60px;
   margin: 10px;
   padding: 0 10px;
   cursor: pointer;
-  border: 0.5px solid grey;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 18px;
 }
 
 .MainPage__boxTitle {
-  font-size: 16px;
   max-width: 200px;
   white-space: nowrap; /* Запрещаем перенос строк */
   overflow: hidden; /* Обрезаем все, что не помещается в область */
