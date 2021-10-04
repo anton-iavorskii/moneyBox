@@ -12,6 +12,7 @@ import moment from "../../services/moment";
 import { UPDATE_PAYMENT } from "../../query/payments";
 import { GET_BOX, REMOVE_BOX } from "../../query/boxes";
 import ProgressBar from "../../components/ProgressBar";
+import addSpaceInNumbers from "../../services/spaceInNumbers";
 
 const BoxPage = () => {
   const [context, setContext] = useContext(Context);
@@ -102,7 +103,9 @@ const BoxPage = () => {
         <img src="/img/btn_delete.svg" onClick={removeBoxHandler} />
         <div className="BoxPage__TitleWrapper">
           <div className="BoxPage__BoxTitle"> {boxTitle}</div>
-          <div className="BoxPage__BoxAmount"> цель {boxAmount} руб.</div>
+          <div className="BoxPage__BoxAmount">
+            цель {boxAmount && addSpaceInNumbers(boxAmount)} руб.
+          </div>
         </div>
         <BtnToMainPage />
       </div>
@@ -114,18 +117,26 @@ const BoxPage = () => {
           </div>
           <div className="BoxPage__info_textInBlock">цель поставлена</div>
         </div>
-        {/* <div>Надо накопить:  рублей.</div> */}
         <div className="BoxPage__info">
-          <div className="BoxPage__info_time">{boxTime} недель</div>
+          <div className="BoxPage__info_time">
+            {boxTime === 13 && "3 месяца"}
+            {boxTime === 26 && "6 месяцев"}
+            {boxTime === 52 && "1 год"}
+          </div>
           <div className="BoxPage__info_textInBlock">срок</div>
         </div>
         <div className="BoxPage__info">
-          <div className="BoxPage__info_paymentsTrue">{paymentsTrue} руб.</div>
+          <div className="BoxPage__info_paymentsTrue">
+            {paymentsTrue && addSpaceInNumbers(paymentsTrue)} руб.
+          </div>
           <div className="BoxPage__info_textInBlock">накоплено</div>
         </div>
         <div className="BoxPage__info">
           <div className="BoxPage__info_balance">
-            {boxAmount - paymentsTrue} руб.
+            {boxAmount &&
+              paymentsTrue &&
+              addSpaceInNumbers(boxAmount - paymentsTrue)}{" "}
+            руб.
           </div>
           <div className="BoxPage__info_textInBlock">осталось накопить</div>
         </div>
@@ -142,7 +153,7 @@ const BoxPage = () => {
               <div
                 className={`BoxPage__payment ${item.status && "--selected"}`}
               >
-                {item.value}
+                {addSpaceInNumbers(item.value)}
               </div>
               <div className={`${item.status && "BoxPage__paymenLine1"}`}></div>
               <div className={`${item.status && "BoxPage__paymenLine2"}`}></div>

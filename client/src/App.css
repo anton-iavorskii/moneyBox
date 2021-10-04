@@ -37,8 +37,13 @@
 
 .Form__btnSubmit {
   font-weight: 600;
-  margin-top: 20px;
+  margin-top: 25px;
   font-size: 16px;
+  padding: 5px 10px;
+  border: 1px solid #78737366;
+  width: 60%;
+  height: 50px;
+  border-radius: 8px;
 }
 
 .wrapperAuthLink {
