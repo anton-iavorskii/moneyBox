@@ -24,7 +24,7 @@ const MainPage = () => {
         variables: { userId: userId },
       });
     }
-  }, [userId, getBoxes]);
+  }, [userId, getBoxes, history]);
 
   const paymentsHandler = (boxIdClick) => {
     history.push(`/box/${boxIdClick}`);

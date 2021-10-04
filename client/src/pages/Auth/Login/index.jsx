@@ -1,5 +1,5 @@
 import "./index.css";
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { Link, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
@@ -14,6 +14,8 @@ import Header from "../../../components/Header";
 const LoginPage = () => {
   const [context, setContext] = useContext(Context);
   const history = useHistory();
+
+  const [errorLogin, setErrorLogin] = useState(false);
 
   const [signin, { data: dataSingin }] = useMutation(SIGNIN);
 
@@ -37,6 +39,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (dataSingin) {
       const token = dataSingin?.signin?.jwtToken;
+      token === null && setErrorLogin(true);
       token && Auth.login(token);
     }
   }, [dataSingin]);
@@ -64,6 +67,9 @@ const LoginPage = () => {
   return (
     <div className="LoginPage">
       <Header />
+      {errorLogin && (
+        <div className="error">Проверьте правильность пароля или email</div>
+      )}
       <form className="Form LoginPage__Form" onSubmit={handleSubmit}>
         <input
           className="Form__input LoginPage__Form_input"
@@ -72,6 +78,9 @@ const LoginPage = () => {
           onChange={handleChange}
           placeholder="Почта"
         />
+        {touched.email && errors.email ? (
+          <div style={{ color: "red" }}>{errors.email}</div>
+        ) : null}
 
         <input
           className="Form__input LoginPage__Form_input"
@@ -80,6 +89,9 @@ const LoginPage = () => {
           onChange={handleChange}
           placeholder="Пароль"
         />
+        {touched.password && errors.password ? (
+          <div style={{ color: "red" }}>{errors.password}</div>
+        ) : null}
 
         <button
           className="Form__btnSubmit LoginPage__Form_btnSubmit"

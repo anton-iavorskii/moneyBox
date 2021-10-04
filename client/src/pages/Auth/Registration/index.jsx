@@ -21,13 +21,19 @@ const RegistrationPage = () => {
   // схема валидации
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required("Заполните поле - Почта"),
-    password: Yup.string().required("Заполните поле - Пароль"),
+    password: Yup.string()
+      .required("Заполните поле - Пароль")
+      .min(6, "Введите не менее 6 символов"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Пароли не совпадают")
+      .required("Подтвердите пароль"),
   });
 
   // начальные значения полей
   const initialValues = {
     email: "",
     password: "",
+    confirmPassword: "",
   };
 
   const onSubmit = (data) => {
@@ -38,6 +44,16 @@ const RegistrationPage = () => {
       },
     });
   };
+
+  // error signup
+  useEffect(() => {
+    if (errorSignup) {
+      const msg = errorSignup.message;
+      if (msg.indexOf("users_email") !== -1) {
+        alert("такой email уже существует");
+      }
+    }
+  }, [errorSignup]);
 
   // after signup
   useEffect(() => {
@@ -81,6 +97,9 @@ const RegistrationPage = () => {
           onChange={handleChange}
           placeholder="Укажите почту"
         />
+        {touched.email && errors.email ? (
+          <div style={{ color: "red" }}>{errors.email}</div>
+        ) : null}
 
         <input
           className="Form__input RegistrationPage__Form_input"
@@ -89,6 +108,20 @@ const RegistrationPage = () => {
           onChange={handleChange}
           placeholder="Придумайте пароль"
         />
+        {touched.password && errors.password ? (
+          <div style={{ color: "red" }}>{errors.password}</div>
+        ) : null}
+
+        <input
+          className="Form__input RegistrationPage__Form_input"
+          type="password"
+          name="confirmPassword"
+          onChange={handleChange}
+          placeholder="Повторите пароль"
+        />
+        {touched.confirmPassword && errors.confirmPassword ? (
+          <div style={{ color: "red" }}>{errors.confirmPassword}</div>
+        ) : null}
 
         <button
           className="Form__btnSubmit RegistrationPage__Form_btnSubmit"

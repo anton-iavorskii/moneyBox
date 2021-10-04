@@ -6,6 +6,7 @@ import LoginPage from "./pages/Auth/Login";
 import MainPage from "./pages/MainPage";
 import CreateBoxPage from "./pages/CreateBoxPage";
 import BoxPage from "./pages/BoxPage";
+import WellcomePage from "./pages/WellcomPage";
 import { Context } from "./context/Context";
 
 const Routes = () => {
@@ -20,6 +21,7 @@ const Routes = () => {
 
   return (
     <Switch>
+      <Route exact path="/wellcome" component={WellcomePage} />
       <Route exact path="/reg" component={RegistrationPage} />
       <Route exact path="/login" component={LoginPage} />
 
