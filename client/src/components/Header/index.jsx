@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./index.css";
 
@@ -11,8 +12,12 @@ const Header = () => {
 
   return (
     <div className="Header">
-      <div className="logo">FG</div>
-      <div className="logoCenter">Finacial Goal</div>
+      <Link to="/wellcome" className="logo">
+        FG
+      </Link>
+      <Link to="/wellcome" className="logoCenter">
+        Finacial Goal
+      </Link>
       <img
         className="BtnLogout"
         src="/img/btn_logout.svg"

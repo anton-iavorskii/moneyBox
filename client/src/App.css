@@ -68,3 +68,17 @@
   margin: 25px 0;
   text-align: center;
 }
+
+.Btn {
+  font-weight: 600;
+  margin-top: 25px;
+  font-size: 16px;
+  padding: 5px 10px;
+  border: 1px solid #78737366;
+  width: 200px;
+  height: 50px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
