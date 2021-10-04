@@ -50,8 +50,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 0.5px solid grey;
-  border-radius: 6px;
+  background-color: #2a2e4094;
+  border-radius: 8px;
   width: 154px;
   height: 50px;
   margin: 5px;
@@ -81,10 +81,15 @@
   justify-content: center;
   width: 100px;
   height: 100px;
-  border: 1px solid grey;
+  background-color: #2a2e4094;
   margin: 5px;
   cursor: pointer;
-  /* font-weight: 600; */
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.--selected {
+  color: grey;
 }
 
 .BoxPage__paymenLine1 {

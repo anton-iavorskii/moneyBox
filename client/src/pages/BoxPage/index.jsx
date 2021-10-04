@@ -139,7 +139,11 @@ const BoxPage = () => {
               key={index}
               onClick={() => changeStatusPayment(item.id, item.status)}
             >
-              <div className="BoxPage__payment">{item.value}</div>
+              <div
+                className={`BoxPage__payment ${item.status && "--selected"}`}
+              >
+                {item.value}
+              </div>
               <div className={`${item.status && "BoxPage__paymenLine1"}`}></div>
               <div className={`${item.status && "BoxPage__paymenLine2"}`}></div>
             </div>
