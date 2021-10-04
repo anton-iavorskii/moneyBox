@@ -58,3 +58,13 @@
   color: red;
   padding: 10px 0;
 }
+
+.error {
+  position: absolute;
+  margin: 0 auto;
+  top: 50px;
+  width: 60%;
+  color: red;
+  margin: 25px 0;
+  text-align: center;
+}

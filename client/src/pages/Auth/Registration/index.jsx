@@ -45,6 +45,16 @@ const RegistrationPage = () => {
     });
   };
 
+  // error signup
+  useEffect(() => {
+    if (errorSignup) {
+      const msg = errorSignup.message;
+      if (msg.indexOf("users_email") !== -1) {
+        alert("такой email уже существует");
+      }
+    }
+  }, [errorSignup]);
+
   // after signup
   useEffect(() => {
     if (dataSignup) {
