@@ -2,8 +2,14 @@
 Используемый стек: Node, Express, Postgres, Postgraphile, React, Apollo
 
 ## Обзор
-#### Signin
+#### Страница входа
 ![signin](https://github.com/anton-iavorskii/moneyBox/blob/master/readme-assets/Login.png)
+#### Страница описания
+![about](https://github.com/anton-iavorskii/moneyBox/blob/master/readme-assets/About.png)
+#### Главная
+![main](https://github.com/anton-iavorskii/moneyBox/blob/master/readme-assets/Main.png)
+#### Страница цели
+![goal](https://github.com/anton-iavorskii/moneyBox/blob/master/readme-assets/Goal.png)
 
 ```js
 yarn add global pm2
