@@ -3,7 +3,7 @@
 
 ## Обзор
 #### Signin
-![signin](https://github.com/anton-iavorskii/my_apartments/blob/master/readme-assets/Login.png)
+![signin](https://github.com/anton-iavorskii/moneyBox/blob/master/readme-assets/Login.png)
 
 ```js
 yarn add global pm2
