@@ -9,6 +9,7 @@ import {
 import { onError } from "@apollo/client/link/error";
 
 import { getToken, logout } from "./auth";
+console.log(process.env.REACT_APP_SERVER);
 
 const httpLink = new HttpLink({ uri: process.env.REACT_APP_SERVER });
 
