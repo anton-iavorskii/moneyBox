@@ -8,7 +8,7 @@ import path from "path";
 const app = express();
 
 config({
-  path: path.resolve(process.cwd(), `.env.${process.env.NODE_ENV}`),
+  path: path.resolve(process.cwd(), `.env${process.env.NODE_ENV}`),
 });
 
 // CORS
